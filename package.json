@@ -1,0 +1,83 @@
+{
+  "name": "learnstorybook-design-system",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Learn Storybook design system",
+  "main": "dist/index.js",
+  "repository": "https://github.com/chromaui/learnstorybook-design-system.git",
+  "author": "Tom Coleman <tom@thesnail.org>",
+  "license": "MIT",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "polished": "^4.1.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.3",
+    "styled-components": "^5.2.1",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "build": "cross-env BABEL_ENV=production babel src -d dist",
+    "test": "react-scripts test",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "build-storybook-docs": "build-storybook --docs",
+    "release": "auto shipit --base-branch=main"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "react-app",
+        {
+          "absoluteRuntime": false
+        }
+      ]
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@storybook/addon-a11y": "^6.4.9",
+    "@storybook/addon-actions": "^6.4.9",
+    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-interactions": "^6.4.9",
+    "@storybook/addon-links": "^6.4.9",
+    "@storybook/node-logger": "^6.4.9",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.4.9",
+    "@storybook/testing-library": "^0.0.7",
+    "auto": "^10.32.3",
+    "chromatic": "^6.2.0",
+    "cross-env": "^7.0.3",
+    "prettier": "^2.5.1"
+  }
+}
