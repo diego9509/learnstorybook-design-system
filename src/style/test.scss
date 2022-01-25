@@ -1,0 +1,48 @@
+$primary-color: #E0205C;
+$secondary-color: #26B9D1;
+$color-steps: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900;
+
+
+@for $i from 1 through length($color-steps) {
+    $step: nth($color-steps, $i);
+    $percentage: ($i - 1) * 10 * 1%;
+    @debug $percentage;
+
+    .Primary-#{$step}{
+        background: mix(white, $primary-color, $percentage);
+        &:after {
+            display: block;
+            content: '#{$percentage}, #{mix(white, $primary-color, $percentage)}';
+            font-size: .625rem;
+            font-weight: 400;
+        }
+    }
+    // @if $i < 5 {
+    //     .Primary-#{$step}{
+    //         background: lighten($primary-color, $percentage)
+    //     }
+    // } @else if $i == 5 {
+    //     .Primary-#{$step}{
+    //         background: $primary-color
+    //     }
+    // } @else if $i > 5 {
+    //     .Primary-#{$step}{
+    //         background: mix(black, $primary-color, $percentage)
+    //     }
+    // }
+
+}
+
+.step-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    gap: .25rem;
+    > div {
+        height: 0;
+        flex: 1 0 auto;
+        font-size: .875rem;
+        font-weight: 700;
+        border-radius: .25rem;
+        padding-top: 10%;
+    }
+}
