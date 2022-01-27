@@ -12,7 +12,7 @@ export const Default = Template.bind({});
 Default.args = {
   task: {
     id: '1',
-    title: 'Primary',
+    title: 'primary',
     value: 'E0205C'
   },
 };
@@ -21,7 +21,7 @@ export const Secondary = Template.bind({});
 Secondary.args = {
   task: {
     ...Default.args.task,
-    title: 'Secondary',
+    title: 'secondary',
     value: '26B9D1'
   },
 };

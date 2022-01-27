@@ -2,47 +2,63 @@ $primary-color: #E0205C;
 $secondary-color: #26B9D1;
 $color-steps: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900;
 
+@mixin color-palette($color, $name) {
+    $color-steps-light: 400, 300, 200, 100, 50;
+    $color-steps-dark: 600, 700, 800, 900;
 
-@for $i from 1 through length($color-steps) {
-    $step: nth($color-steps, $i);
-    $percentage: ($i - 1) * 10 * 1%;
-    @debug $percentage;
+    :root {
+        --#{$name}-500 : #{$color};
 
-    .Primary-#{$step}{
-        background: mix(white, $primary-color, $percentage);
-        &:after {
-            display: block;
-            content: '#{$percentage}, #{mix(white, $primary-color, $percentage)}';
-            font-size: .625rem;
-            font-weight: 400;
+        @for $i from 1 through length($color-steps-light) {
+            $step: nth($color-steps-light, $i);
+            $percentage: $i * 10 * .875%;
+    
+            --#{$name}-#{$step}: #{lighten($color, $percentage)};
+        }
+
+        @for $i from 1 through length($color-steps-dark) {
+            $step: nth($color-steps-dark, $i);
+            $percentage: $i * 10 * .625%;
+        
+            --#{$name}-#{$step}: #{darken($color, $percentage)};
         }
     }
-    // @if $i < 5 {
-    //     .Primary-#{$step}{
-    //         background: lighten($primary-color, $percentage)
-    //     }
-    // } @else if $i == 5 {
-    //     .Primary-#{$step}{
-    //         background: $primary-color
-    //     }
-    // } @else if $i > 5 {
-    //     .Primary-#{$step}{
-    //         background: mix(black, $primary-color, $percentage)
-    //     }
-    // }
+}
 
+@include color-palette($primary-color, primary);
+@include color-palette($secondary-color, secondary);
+
+@each $step in $color-steps {
+    .primary-#{$step} {
+        background: var(--primary-#{$step});
+        &:after {
+            content: 'var(--primary-#{$step}';
+        }
+    }
+    .secondary-#{$step} {
+        background: var(--secondary-#{$step});
+        &:after {
+            content: 'var(--secondary-#{$step}';
+        }
+    }
 }
 
 .step-wrapper {
+    height: 100px;
     display: flex;
     justify-content: space-evenly;
     gap: .25rem;
     > div {
         height: 0;
-        flex: 1 0 auto;
+        flex: 1 1 0px;
         font-size: .875rem;
         font-weight: 700;
         border-radius: .25rem;
         padding-top: 10%;
+        &:after {
+            display: block;
+            font-size: .625rem;
+            font-weight: 400;
+        }
     }
 }
