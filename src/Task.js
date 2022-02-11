@@ -11,8 +11,11 @@ export default function Task({ task: { id, title, value } }) {
   >{step}</div>);
   
   return (
-    <div className="step-wrapper">
-      {stepList}
-    </div>
+    <>
+      <div className="step-wrapper">
+        {stepList}
+      </div>
+      <div className="svg-test"></div>
+    </>
   );
 }
